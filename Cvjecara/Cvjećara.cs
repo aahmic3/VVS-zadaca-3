@@ -20,7 +20,7 @@ namespace Cvjecara
 
         #region Properties
 
-        public List<Cvijet> Cvijeće { get => cvijeće; }
+        public List<Cvijet> Cvijeće { get => cvijeće; set => cvijeće = value; }
         public List<Poklon> NaručeniPokloni { get => naručeniPokloni; set => naručeniPokloni = value; }
         public List<Mušterija> Mušterije { get => mušterije; set => mušterije = value; }
 

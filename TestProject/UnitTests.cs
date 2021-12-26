@@ -1,6 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cvjecara;
 using System;
+using System.Collections.Generic;
+
 namespace TestProject
 {
     [TestClass]
@@ -11,12 +13,12 @@ namespace TestProject
         public void TestTuning()
         {
             Cvjeæara cvjeæara = new Cvjeæara();
+            List<Cvijet> cvijece = new List<Cvijet>();
             for(int i = 0; i < 10000; i++)
             {
-                cvjeæara.RadSaCvijeæem(
-                    new Cvijet(Vrsta.Ruža, "Rosa"+ i, "Crvena",System.DateTime.Now.AddDays(-2),i+1),
-                    0, i+1);
+               cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", System.DateTime.Now.AddDays(-2), i + 1));
             }
+            cvjeæara.Cvijeæe = cvijece;
             //breakpoint - prije poziva metode
             int x = 0;
             cvjeæara.RadSaCvijeæem(
