@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+ï»¿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cvjecara;
 using System;
 using System.Collections.Generic;
@@ -12,20 +12,22 @@ namespace TestProject
         [ExpectedException(typeof(InvalidOperationException))]
         public void TestTuning()
         {
-            Cvjeæara cvjeæara = new Cvjeæara();
+            CvjeÄ‡ara cvjeÄ‡ara = new CvjeÄ‡ara();
             List<Cvijet> cvijece = new List<Cvijet>();
             for(int i = 0; i < 10000; i++)
             {
-               cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", System.DateTime.Now.AddDays(-2), i + 1));
+               cvijece.Add(new Cvijet(Vrsta.RuÅ¾a, "Rosa" + i, "Crvena", System.DateTime.Now.AddDays(-2), i + 1));
             }
-            cvjeæara.Cvijeæe = cvijece;
+            cvjeÄ‡ara.CvijeÄ‡e = cvijece;
             //breakpoint - prije poziva metode
             int x = 0;
-            cvjeæara.RadSaCvijeæem(
-                new Cvijet(Vrsta.Ruža, "Rosa5000", "Crvena", System.DateTime.Now.AddDays(-2), 100),
+            cvjeÄ‡ara.RadSaCvijeÄ‡em(
+                new Cvijet(Vrsta.RuÅ¾a, "Rosa5000", "Crvena", System.DateTime.Now.AddDays(-2), 100),
                 0, 1);
             //breakpoint - poslije poziva metode
             int y = 0;
+
+            Assert.IsTrue(true);
         }
     }
 }
