@@ -101,9 +101,10 @@ namespace Cvjecara
                     throw new NullReferenceException("Nemoguće dodati cvijet koji ne postoji!");
                 else
                 {
+                    String pom = c.LatinskoIme;
                     foreach (Cvijet cvijet in cvijeće)
                     {
-                        if (cvijet.LatinskoIme == c.LatinskoIme)
+                        if (cvijet.LatinskoIme == pom)
                         {
                             if (cvijet.Kolicina < minKoličina * 1000)
                                 continue;
@@ -153,10 +154,10 @@ namespace Cvjecara
                     {
                         minKoličina1 += minKoličina;
                     }
-
+                    string pom = c.LatinskoIme;
                     foreach (Cvijet cvijet in cvijeće)
                     {
-                        if (cvijet.LatinskoIme == c.LatinskoIme)
+                        if (cvijet.LatinskoIme == pom)
                         {
                             if (cvijet.Kolicina < minKoličina1)
                                 continue;
@@ -193,6 +194,73 @@ namespace Cvjecara
             else
                 throw new InvalidOperationException("Unijeli ste nepoznatu opciju!");
         }
+        public void RadSaCvijećemTuning3(Cvijet c, int opcija, int minKoličina)
+        {
+            if (opcija == 0)
+            {
+                if (c == null)
+                    throw new NullReferenceException("Nemoguće dodati cvijet koji ne postoji!");
+                else
+                {
+                    int minKoličina1 = 0;
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        minKoličina1 += minKoličina;
+                    }
+                    string pom = c.LatinskoIme;
+                    for(int i = 0; i < cvijeće.Count; i+=4)
+                    {
+                        if (cvijeće[i].LatinskoIme == pom)
+                        {
+                            if (cvijeće[i].Kolicina >= minKoličina1)
+                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+                        }
+                        if (cvijeće[i+1].LatinskoIme == pom)
+                        {
+                            if (cvijeće[i+1].Kolicina >= minKoličina1)
+                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+                        }
+                        if (cvijeće[i+2].LatinskoIme == pom)
+                        {
+                            if (cvijeće[i+2].Kolicina >= minKoličina1)
+                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+                        }
+                        if (cvijeće[i+3].LatinskoIme == pom)
+                        {
+                            if (cvijeće[i+3].Kolicina >= minKoličina1)
+                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+                        }
+                    }
+                    cvijeće.Add(c);
+                }
+            }
+            else if (opcija == 1)
+            {
+                if (c == null)
+                    throw new NullReferenceException("Nemoguće izmijeniti cvijet koji ne postoji!");
+                else if (cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme) == null)
+                    throw new InvalidOperationException("Nemoguće izmijeniti cvijet koji ne postoji!");
+                else
+                {
+                    cvijeće.Remove(cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme));
+                    cvijeće.Add(c);
+                }
+            }
+            else if (opcija == 2)
+            {
+                if (c == null)
+                    throw new NullReferenceException("Nemoguće obrisati cvijet koji ne postoji!");
+                else if (cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme) == null)
+                    throw new InvalidOperationException("Nemoguće obrisati cvijet koji ne postoji!");
+                else
+                {
+                    cvijeće.Remove(cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme));
+                }
+            }
+            else
+                throw new InvalidOperationException("Unijeli ste nepoznatu opciju!");
+        }
+
         #endregion
 
         public void DodajBuket(List<Cvijet> cvijeće, List<string> dodaci, Poklon poklon, double cijena)

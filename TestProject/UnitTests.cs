@@ -14,20 +14,19 @@ namespace TestProject
         {
             Cvjećara cvjećara = new Cvjećara();
             List<Cvijet> cvijece = new List<Cvijet>();
-            for(int i = 0; i < 10000; i++)
+            DateTime t = System.DateTime.Now.AddDays(-2);
+            for (int i = 0; i < 10000000; i++)
             {
-               cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", System.DateTime.Now.AddDays(-2), i + 1));
+               cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", t, i + 1));
             }
             cvjećara.Cvijeće = cvijece;
             //breakpoint - prije poziva metode
             int x = 0;
-            cvjećara.RadSaCvijećem(
-                new Cvijet(Vrsta.Ruža, "Rosa5000", "Crvena", System.DateTime.Now.AddDays(-2), 100),
+            cvjećara.RadSaCvijećemTuning3(
+                new Cvijet(Vrsta.Ruža, "Rosa5000000", "Crvena", System.DateTime.Now.AddDays(-2), 100),
                 0, 1);
             //breakpoint - poslije poziva metode
             int y = 0;
-
-            Assert.IsTrue(true);
         }
     }
 }
