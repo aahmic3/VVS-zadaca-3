@@ -22,7 +22,7 @@ namespace TestProject
             cvjećara.Cvijeće = cvijece;
             //breakpoint - prije poziva metode
             int x = 0;
-            cvjećara.RadSaCvijećemTuning3(
+            cvjećara.RadSaCvijećemTuning2(
                 new Cvijet(Vrsta.Ruža, "Rosa5000000", "Crvena", System.DateTime.Now.AddDays(-2), 100),
                 0, 1);
             //breakpoint - poslije poziva metode

@@ -157,13 +157,12 @@ namespace Cvjecara
                     string pom = c.LatinskoIme;
                     foreach (Cvijet cvijet in cvijeće)
                     {
-                        if (cvijet.LatinskoIme == pom)
+                        if (cvijet.LatinskoIme == pom && cvijet.Kolicina < minKoličina1)
                         {
-                            if (cvijet.Kolicina < minKoličina1)
-                                continue;
-                            else
-                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+                            continue; 
                         }
+                        else
+                            throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
                     }
                     cvijeće.Add(c);
                 }
@@ -208,28 +207,14 @@ namespace Cvjecara
                         minKoličina1 += minKoličina;
                     }
                     string pom = c.LatinskoIme;
-                    for(int i = 0; i < cvijeće.Count; i+=4)
+                    for (int i = 0; i < cvijeće.Count; i += 4)
                     {
-                        if (cvijeće[i].LatinskoIme == pom)
-                        {
-                            if (cvijeće[i].Kolicina >= minKoličina1)
-                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
-                        }
-                        if (cvijeće[i+1].LatinskoIme == pom)
-                        {
-                            if (cvijeće[i+1].Kolicina >= minKoličina1)
-                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
-                        }
-                        if (cvijeće[i+2].LatinskoIme == pom)
-                        {
-                            if (cvijeće[i+2].Kolicina >= minKoličina1)
-                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
-                        }
-                        if (cvijeće[i+3].LatinskoIme == pom)
-                        {
-                            if (cvijeće[i+3].Kolicina >= minKoličina1)
-                                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
-                        }
+                        if (cvijeće[i].LatinskoIme == pom && cvijeće[i].Kolicina >= minKoličina1
+                            || cvijeće[i + 1].LatinskoIme == pom && cvijeće[i + 1].Kolicina >= minKoličina1 ||
+                            cvijeće[i + 2].LatinskoIme == pom && cvijeće[i + 2].Kolicina >= minKoličina1 ||
+                            cvijeće[i + 3].LatinskoIme == pom && cvijeće[i + 3].Kolicina >= minKoličina1)
+
+                            throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
                     }
                     cvijeće.Add(c);
                 }
@@ -323,6 +308,31 @@ namespace Cvjecara
             else
                 return;
         }
+        public void ProvjeriLatinskaImenaCvijećaRefactoring()
+        {
+            List<Cvijet> zaObrisati = new List<Cvijet>();
+            for (int i = 0; i < cvijeće.Count; i++)
+            {
+                if (ispravnoIme(cvijeće[i]))
+                    zaObrisati.Add(cvijeće[i]);
+                else if (ispravnoIme(cvijeće[i]))
+                    zaObrisati.Add(cvijeće[i]);
+            }
+            cvijeće.RemoveAll(cvijet => zaObrisati.Contains(cvijet));
+
+            if (cvijeće.Count == 0)
+                throw new ArgumentException("Obrisano je svo cvijeće iz kolekcije!");
+            else
+                return;
+        }
+        public bool ispravnoIme(Cvijet cvijet)
+        {
+            if (cvijet.Vrsta == Vrsta.Ruža && cvijet.LatinskoIme != "Rosa") return true;
+            else if (cvijet.LatinskoIme != "Lilium" && cvijet.LatinskoIme != "Calendula" &&
+                 cvijet.LatinskoIme != "Orchidacea" && cvijet.LatinskoIme != "Leucanthemum") return true;
+            return false;
+        }
+
 
         public List<Poklon> DajSveNaručenePoklone(Mušterija m, double popust)
         {
