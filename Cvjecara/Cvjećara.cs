@@ -342,7 +342,57 @@ namespace Cvjecara
 
             return pokloni;
         }
+        #region Refactoring metode
+        private void DodajCvijet(Cvijet c, int minKoličina)
+        {
+            Cvijet postojeći = null;
+            foreach (Cvijet cvijet in cvijeće)
+            {
+                if (cvijet.LatinskoIme == c.LatinskoIme)
+                {
+                    if (cvijet.Kolicina < minKoličina * 1000)
+                        continue;
+                    else
+                        postojeći = cvijet;
+                }
+            }
+            if (postojeći != null)
+                throw new InvalidOperationException("Nemoguće dodati cvijet koji već postoji!");
+            else
+                cvijeće.Add(c);
+        }
+        private void IzmijeniCvijet(Cvijet c)
+        {
+            Cvijet cvijet = cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme);
+            if (cvijet == null)
+                throw new InvalidOperationException("Nemoguće izmijeniti cvijet koji ne postoji!");
+            cvijeće.Remove(cvijet);
+            cvijeće.Add(c);
+        }
+        private void ObrisiCvijet(Cvijet c)
+        {
+            Cvijet cvijet = cvijeće.Find(cvijet => cvijet.LatinskoIme == c.LatinskoIme);
+            if (cvijet == null)
+                throw new InvalidOperationException("Nemoguće obrisati cvijet koji ne postoji!");
+            cvijeće.Remove(cvijet);
+        }
+        public void RadSaCvijećemRefactoring(Cvijet c, int opcija, int minKoličina)
+        {
+            if (c == null)
+                throw new NullReferenceException("Nemoguće dodati cvijet koji ne postoji!");
+            if (opcija == 0)
+                DodajCvijet(c, minKoličina);
+            else if (opcija == 1)
+                IzmijeniCvijet(c);
+            else if (opcija == 2)
+                ObrisiCvijet(c);
+            else
+                throw new InvalidOperationException("Unijeli ste nepoznatu opciju!");
+        }
 
         #endregion
+
+        #endregion
+
     }
 }
