@@ -17,7 +17,7 @@ namespace TestProject
             DateTime t = System.DateTime.Now.AddDays(-2);
             for (int i = 0; i < 10000000; i++)
             {
-               cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", t, i + 1));
+                cvijece.Add(new Cvijet(Vrsta.Ruža, "Rosa" + i, "Crvena", t, i + 1));
             }
             cvjećara.Cvijeće = cvijece;
             //breakpoint - prije poziva metode
@@ -28,5 +28,15 @@ namespace TestProject
             //breakpoint - poslije poziva metode
             int y = 0;
         }
+        // 1-2-3-8-9-10
+        //Dženeta Ahmić (18482)
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijećaBezCvijeca()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
     }
 }
+   
