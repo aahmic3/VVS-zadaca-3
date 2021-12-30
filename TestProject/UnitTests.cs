@@ -28,6 +28,7 @@ namespace TestProject
             //breakpoint - poslije poziva metode
             int y = 0;
         }
+        
         // 1-2-3-8-9-10
         //Dženeta Ahmić (18482)
         [TestMethod]
@@ -37,6 +38,75 @@ namespace TestProject
             Cvjećara cvjećara = new Cvjećara();
             cvjećara.ProvjeriLatinskaImenaCvijeća();
         }
+       
+        #region Testovi potpunog obuhvata uslova
+        /*
+        //Radila Azra Ahmić(18390)
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijećBezCvijeća()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijećaRužaBrisanje()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Ruža, "RosaCanina", "Crvena", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijećaRužaIspravna()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Ruža, "Rosa", "Crvena", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaLjiljan()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Ljiljan, "Lilium", "Crvena", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaMargareta()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Margareta, "Leucanthemum", "Bijela", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaNeven()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Calendula", "Žuta", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaOrhideja()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Orhideja, "Orchidacea", "Bijela", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }*/
+        #endregion
     }
+
 }
    
