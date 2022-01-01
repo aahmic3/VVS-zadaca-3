@@ -28,17 +28,40 @@ namespace TestProject
             //breakpoint - poslije poziva metode
             int y = 0;
         }
+
+        #region Testovi potpuni obuhvat odluka
+        /* Dženeta Ahmić (18482)
         
-        // 1-2-3-8-9-10
-        //Dženeta Ahmić (18482)
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestProvjeriLatinskaImenaCvijećaBezCvijeca()
+        public void TestProvjeriLatinskaImenaCvijecaIzuzetak1()
         {
             Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Ruža, "RosaNeka", "Crvena", DateTime.Now.AddDays(-2), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
             cvjećara.ProvjeriLatinskaImenaCvijeća();
         }
-       
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijecaIzuzetak2()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Neki", "Žuta", DateTime.Now.AddDays(-2), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijecaUspjesno()
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Calendula", "Žuta", DateTime.Now.AddDays(-2), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.AreEqual(cvjećara.Cvijeće.Count, 1);
+        }
+       */
+        #endregion
+
         #region Testovi potpunog obuhvata uslova
         /*
         //Radila Azra Ahmić(18390)
