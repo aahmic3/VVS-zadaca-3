@@ -113,6 +113,20 @@ namespace Cvjecara
                 kolicina = 0;
         }
 
+
+        #endregion
+        #region Refaktoring
+        public void ProvjeriKrajSezoneRefaktoring() {
+            if (!sezonsko) return;
+            if (ProvjeriDaLiJeZimaRefaktoring(DateTime.Now.Month)) kolicina = 0;
+
+        }
+        public bool ProvjeriDaLiJeZimaRefaktoring(int mjesec)
+        {
+            if (mjesec < 3 || mjesec > 9) return true;
+            return false;
+        }
+
         #endregion
     }
 }

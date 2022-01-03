@@ -49,14 +49,15 @@ namespace Cvjecara
                 else
                 {
                     Cvijet postojeći = null;
-                    foreach (Cvijet cvijet in cvijeće)
+                     foreach (Cvijet cvijet in cvijeće)
                     {
+                 
                         if (cvijet.LatinskoIme == c.LatinskoIme)
                         {
-                            if (cvijet.Kolicina < minKoličina * 1000)
-                                continue;
-                            else
-                                postojeći = cvijet;
+                        if (cvijet.Kolicina < minKoličina * 1000) 
+                        continue;
+                        else
+                            postojeći = cvijet;
                         }
                     }
 
@@ -66,6 +67,7 @@ namespace Cvjecara
                         cvijeće.Add(c);
                 }
             }
+            
             else if (opcija == 1)
             {
                 if (c == null)
@@ -252,12 +254,14 @@ namespace Cvjecara
         {
             Buket b = new Buket(cijena);
             b.DodajPoklon(poklon);
+            
             foreach (Cvijet c in cvijeće)
                 b.DodajCvijet(c);
             foreach (string dodatak in dodaci)
                 b.DodajDodatak(dodatak);
             buketi.Add(b);
         }
+     
 
         public bool ObrišiBuket(Buket b)
         {

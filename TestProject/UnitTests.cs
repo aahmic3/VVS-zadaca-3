@@ -129,6 +129,58 @@ namespace TestProject
             Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
         }*/
         #endregion
+
+        #region Testovi potpuni obuhvat tijela petlje
+
+        //radila: Nedina Muratović
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestProvjeriLatinskaImenaCvijećBezCvjetova()//da se ne izvrsi tijelo petlje
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+        }
+
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaNeven()//da se tijelo petlje izvrši jednom
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Lilium", "Žuta", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }
+
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijećaRužaNeven()//tijelo petlje se izvršava 2 puta
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Calendula", "Žuta", DateTime.Now.AddDays(-1), 2);
+            Cvijet cvijet2 = new Cvijet(Vrsta.Ruža, "Rossa", "Žuta", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.RadSaCvijećem(cvijet2, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 1);
+        }
+
+        [TestMethod]
+        public void TestProvjeriLatinskaImenaCvijeća()//tijelo petlje se izvršava m (m<n) puta
+        {
+            Cvjećara cvjećara = new Cvjećara();
+            Cvijet cvijet = new Cvijet(Vrsta.Neven, "Calendula", "Žuta", DateTime.Now.AddDays(-1), 2);
+            Cvijet cvijet2 = new Cvijet(Vrsta.Ruža, "Rosa", "Žuta", DateTime.Now.AddDays(-1), 2);
+            Cvijet cvijet3 = new Cvijet(Vrsta.Orhideja, "Orchidacea", "Žuta", DateTime.Now.AddDays(-1), 2);
+            cvjećara.RadSaCvijećem(cvijet, 0, 1);
+            cvjećara.RadSaCvijećem(cvijet2, 0, 1);
+            cvjećara.RadSaCvijećem(cvijet3, 0, 1);
+            cvjećara.ProvjeriLatinskaImenaCvijeća();
+            Assert.IsTrue(cvjećara.Cvijeće.Count == 2);
+        }
+
+
+
+
+        #endregion
     }
 
 }
